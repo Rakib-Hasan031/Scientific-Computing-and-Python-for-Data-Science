@@ -1,0 +1,39 @@
+def list_true(n):
+    x = [True] * (n+1)
+    x[0] = False
+    x[1] = False
+    return x
+assert len(list_true(20)) == 21
+assert list_true(20)[0] is False
+assert list_true(20)[1] is False
+import math
+def mark_false(bool_list, p):
+    max_number = math.floor(len(bool_list)/p)
+    index = [i*p for i in range(2, max_number + 1)]
+    for i in index:
+        if i < len(bool_list):
+            bool_list[i] = False
+    return bool_list
+assert mark_false(list_true(6), 2) == [False, False, True, True, False, True, False]
+def find_next(bool_list, p):
+    for (i,j) in enumerate(bool_list):
+        if j == True and i > p:
+            return i
+assert find_next([True, True, True, True], 2) == 3
+assert find_next([True, True, True, False], 2) is None
+def prime_from_list(bool_list):
+    return [i for i, x in enumerate(bool_list) if x]
+assert prime_from_list([False, False, True, True, False]) ==  [2, 3]
+def sieve(n):
+    bool_list = list_true(n)
+    p = 2
+    while p is not None:
+        bool_list = mark_false(bool_list, p)
+        p = find_next(bool_list, p)
+    return prime_from_list(bool_list)
+assert sieve(1000) == get_primes(1, 1000)
+%%timeit 
+sieve(1000)
+%%timeit 
+get_primes(0, 1000)
+grader.score.ip__eratosthenes(sieve)
