@@ -1,0 +1,22 @@
+def mersenne_number(p):
+    return [2**x - 1 for x in p]
+def is_prime(number):
+    if number == 1:
+        return False
+    
+    for factor in range(2, number):
+        if number % factor == 0:
+            return False
+
+    return True
+
+def get_primes(n1,n2):
+    list_primes = []
+    for number in range(n1, n2):
+        if is_prime(number):
+            list_primes.append(number)
+    return list_primes
+mersennes = [7] * 17
+primes = get_primes(3,66)
+mersennes = mersenne_number(primes)
+grader.score.ip__mersenne_numbers(mersennes)
