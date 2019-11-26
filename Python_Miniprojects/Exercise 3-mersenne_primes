@@ -1,0 +1,12 @@
+def ll_prime(p):
+    series = lucas_lehmer(p)
+    last_number = series[p-2]
+    if last_number == 0:
+        return 1
+    else:
+        return 0
+prime_list = get_primes(3,65)
+is_mersenne_prime = [ll_prime(i) for i in prime_list]
+mersenne_primes = list(zip(prime_list,is_mersenne_prime))
+print(mersenne_primes )
+grader.score.ip__mersenne_primes(mersenne_primes)
