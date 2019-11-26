@@ -1,0 +1,7 @@
+import numpy as np
+def mult(numbers):
+    mult=np.array(numbers)*10
+    return mult
+numbers = [1, 2, 3]
+print(mult(numbers))
+grader.score.in__problem2(mult)
