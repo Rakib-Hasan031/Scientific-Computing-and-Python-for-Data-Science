@@ -1,0 +1,15 @@
+def lucas_lehmer(p):
+    seq = []
+    for i in range(0,p-1):
+        if i == 0:
+            seq.append(4)
+        else:
+            number = seq[i-1]
+            number = number ** 2 - 2
+            number = number % (2 ** p - 1)
+            seq.append(number)
+    return seq
+    
+lucas_lehmer(17)
+lucaslehmer_result = lucas_lehmer(17)
+grader.score.ip__lucas_lehmer(lucaslehmer_result)
