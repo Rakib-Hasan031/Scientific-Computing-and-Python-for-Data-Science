@@ -1,0 +1,32 @@
+def is_prime(number):
+    if number == 1:
+        return False
+    
+    for factor in range(2, number):
+        if number % factor == 0:
+            return False
+
+    return True
+import math
+def is_prime_fast(number):
+    if number == 0:
+        return True
+    if number == 1:
+        return False
+    if number == 2:
+        return True
+    elif number % 2 == 0:
+        return False
+    else:
+        for factor in range(2,int(math.sqrt(number)) + 1):
+            if number % factor == 0:
+                return False
+        return True
+for n in range(10000):
+    assert is_prime(n) == is_prime_fast(n)
+is_prime(67867967)
+%%timeit
+is_prime_fast(67867967)
+def get_primes_fast(n):
+    return [i for i in range(1,n+1) if is_prime_fast(i)]
+grader.score.ip__is_prime_fast(get_primes_fast)
